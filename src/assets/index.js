@@ -1,4 +1,6 @@
 
+
+
 const api = "https://platzi-avo.vercel.app";
 
 const appNode = document.querySelector("#app");
