@@ -8,14 +8,15 @@
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  background-color: #4a54;
-  padding: 12px;
+  padding: 40px;
+  background-color: #66c1f9;
+  background:linear-gradient(to bottom,#00d6fc,#66c1f9);
 }
 
 #datos p {
   padding: 24px 0 12px;
   font-weight: bold;
-  color: #333;
+  color: #f966c1;
 }
 
 #datos h3 {
@@ -25,7 +26,7 @@
 }
 
 #datos span {
-  color: #878c;
+  color: #666;
   font-weight: 600;
   font-size: 0.8rem;
 }
@@ -34,10 +35,11 @@
 }
 .app {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  grid-template-columns: repeat(auto-fit, 300px);
   gap: 12px;
-  margin: 20px 20px;
+  margin: 20px 0px;
   place-content: center;
+  padding: 20px 0;
 }
 .contenedor {
   border-radius: 12px;
@@ -49,8 +51,10 @@
 }
 
 .contenedor:hover {
-  background-color: #4a54;
+  background: linear-gradient(to bottom, #f963c074, #ff7091);
+  box-shadow: 0px 0px 5px #666;
 }
+
 .img {
   width: 100px;
   border-radius: 50%;
@@ -63,6 +67,7 @@
   font-size: 1rem;
   color: rgb(0, 0, 0);
   font-weight: bold;
+  cursor: pointer;
 }
 .precio {
   color: #666;

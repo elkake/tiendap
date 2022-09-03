@@ -1,18 +1,20 @@
-
-
-
 const api = "https://platzi-avo.vercel.app";
 
 const appNode = document.querySelector("#app");
 
+//delegacion de evento
+appNode.onclick = (e) => {
+  if (e.target.className === "titulo") {
+    alert("No amigo, no son paltas reales, lo siento >:D");
+  }
+};
+
 const formatPrice = (precio) => {
-  
-  const newPrecio=new window.Intl.NumberFormat("en-EN",{
-    style:"currency",
-    currency:"USD",
+  const newPrecio = new window.Intl.NumberFormat("en-EN", {
+    style: "currency",
+    currency: "USD",
   }).format(precio);
-  
-  
+
   return newPrecio;
 };
 
