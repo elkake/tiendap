@@ -4,17 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/assets/index.css" />
-    <script defer src="src/assets/index.js"></script>
+    <link rel="stylesheet" href="./assets/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Henny+Penny&family=Monoton&family=Open+Sans:ital,wght@1,300;1,500;1,600;1,700&family=Quicksand:wght@300;400;700&family=Roboto:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- iconos -->
+    <script
+      src="https://kit.fontawesome.com/4c5ca0c4db.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./assets/index.js"></script>
     <title>PALTAS SHOP</title>
   </head>
   <body>
+    <button class="cart_button">
+      <i class="fa-solid fa-cart-shopping"></i> <label class="cont">0</label>
+    </button>
+    <div class="cart_container">
+      <div class="cart_container-items">
+        <div class="cart_items">
+
+        </div>
+        <div class="cart_bottom">
+          <div class="precio_container"><p>TOTAL:</p> <b class="total_number"></b></div>
+          <button class="cart_buy-button">Finalizar Compra</button></div>
+        
+      </div>
+    </div>
     <div id="datos">
       <p>ELKAKE</p>
-      <h3>PALTASHOP</h3>
+      <h3>AVOSHOP</h3>
       <span>
-        Una tienda enfocada para la gente que disfruta de un buen producto
-        brindado por la naturaleza en todo su explendor!!
+        Una tienda ficticia enfocada para la gente que disfruta de un buen
+        producto brindado por la naturaleza en todo su explendor!
       </span>
     </div>
     <div id="app" class="app"></div>

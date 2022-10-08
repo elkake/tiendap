@@ -1,5 +1,14 @@
+:root {
+  --verde: #a7ffe4;
+  --srosa: #ff74b1;
+  --rosa: #ffa1cf;
+  --lrosa: #ffd6ec;
+  --negro: #000;
+  --blanco: #fff;
+}
+
 * {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -8,26 +17,43 @@
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  padding: 40px;
-  background-color: #66c1f9;
-  background:linear-gradient(to bottom,#00d6fc,#66c1f9);
+  padding: 40px 0;
+  background: url(https://cloudfront-us-east-1.images.arcpublishing.com/infobae/HSCJPCLDTFC5NNULTLMFSGVN6M.jpg);
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 10;
+}
+
+#datos::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  backdrop-filter: brightness(80%) sepia(5%);
 }
 
 #datos p {
   padding: 24px 0 12px;
   font-weight: bold;
-  color: #f966c1;
+  color: var(--srosa);
 }
 
 #datos h3 {
   font-weight: bold;
   font-size: 3rem;
   padding-bottom: 20px;
+  color: var(--verde);
+  font-family: 'Bebas Neue', cursive;
 }
 
 #datos span {
-  color: #666;
-  font-weight: 600;
+  color: var(--blanco);
+  font-weight: 500;
   font-size: 0.8rem;
 }
 .py-10 {
@@ -41,20 +67,29 @@
   place-content: center;
   padding: 20px 0;
 }
-.contenedor {
+.contenedor,
+.contenedor2 {
   border-radius: 12px;
   display: flex;
   padding: 12px;
   box-sizing: border-box;
-
+  box-shadow: 0px 0px 5px 1px transparent;
   margin: 0;
 }
 
+.contenedor2:hover,
 .contenedor:hover {
-  background: linear-gradient(to bottom, #f963c074, #ff7091);
+  background: var(--rosa);
   box-shadow: 0px 0px 5px #666;
 }
+.contenedor2:hover .delete_button,
+.contenedor:hover .add_button {
+  display: block;
+}
 
+.contenedor2 {
+  margin: 1rem 3rem;
+}
 .img {
   width: 100px;
   border-radius: 50%;
@@ -69,6 +104,124 @@
   font-weight: bold;
   cursor: pointer;
 }
+.cart_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 0;
+  background-color: var(--lrosa);
+}
 .precio {
   color: #666;
 }
+.precio_container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+.precio_container b {
+  color: var(--srosa);
+}
+.cart_buy-button {
+  height: 32px;
+  border-radius: 4px;
+  background-color: var(--verde);
+  border: none;
+  font-size: 1.2rem;
+  box-shadow: 0 0 4px var(--negro);
+  width: 80%;
+}
+/* ---------------- */
+
+.cart_button {
+  position: fixed;
+  border-radius: 50%;
+  border: none;
+  top: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  z-index: 100;
+  margin: 1rem;
+  color: var(--rosa);
+  background-color: var(--blanco);
+  border: 1px solid var(--rosa);
+  box-shadow: inset 0 0 2px var(--negro);
+}
+
+.cart_button i {
+  font-size: 1.5rem;
+}
+
+.cont {
+  position: absolute;
+  top: 0;
+  color: var(--blanco);
+  background-color: var(--negro);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+}
+.cart_container {
+  display: none;
+
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--blanco);
+  z-index: 50;
+}
+.cart_container-items {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+}
+.cart_items {
+  overflow-y: scroll;
+}
+
+.visible {
+  display: flex;
+}
+.data_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+}
+.delete_button,
+.add_button {
+  margin: 0 auto;
+  background-color: var(--lrosa);
+  padding: 4px 12px;
+  display: none;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px var(--negro);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.delete_button:hover,
+.add_button:hover {
+  background-color: var(--srosa);
+}
+.delete_button:active,
+.add_button:active {
+  background-color: var(--verde);
+  user-select: none;
+  box-shadow: 0px 0px 4px var(--negro);
+}
+
+.no_overflow {
+  overflow: hidden;
+}
+/* ---------------- */
