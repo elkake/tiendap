@@ -75,6 +75,7 @@
   box-sizing: border-box;
   box-shadow: 0px 0px 5px 1px transparent;
   margin: 0;
+  min-width:300px ;
 }
 
 .contenedor2:hover,
@@ -82,14 +83,7 @@
   background: var(--rosa);
   box-shadow: 0px 0px 5px #666;
 }
-.contenedor2:hover .delete_button,
-.contenedor:hover .add_button {
-  display: block;
-}
 
-.contenedor2 {
-  margin: 1rem 3rem;
-}
 .img {
   width: 100px;
   border-radius: 50%;
@@ -134,6 +128,7 @@
   font-size: 1.2rem;
   box-shadow: 0 0 4px var(--negro);
   width: 80%;
+  max-width: 500px;
 }
 /* ---------------- */
 
@@ -187,6 +182,11 @@
 }
 .cart_items {
   overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  padding: 2rem 1rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .visible {
@@ -197,28 +197,37 @@
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 .delete_button,
 .add_button {
-  margin: 0 auto;
+  border-radius: 50%;
   background-color: var(--lrosa);
-  padding: 4px 12px;
-  display: none;
   font-size: 16px;
-  border-radius: 8px;
   box-shadow: 0px 0px 3px var(--negro);
   transition: 0.3s ease;
   cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_button i,
+.add_button i {
+  color: var(--negro);
+  font-size: 24px;
 }
 .delete_button:hover,
 .add_button:hover {
-  background-color: var(--srosa);
+  color: var(--rosa);
+  background-color: var(--verde);
 }
 .delete_button:active,
 .add_button:active {
-  background-color: var(--verde);
-  user-select: none;
-  box-shadow: 0px 0px 4px var(--negro);
+  color: var(--verde);
+  background-color: var(--srosa);
 }
 
 .no_overflow {

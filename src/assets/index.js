@@ -4,45 +4,68 @@ const contadorLabel = document.querySelector('.cont');
 const appNode = document.querySelector('#app');
 const menuButton = document.querySelector('.cart_button');
 const modalCart = document.querySelector('.cart_container');
-const buttonAdd = document.querySelectorAll('.add_button');
 const carrito = document.querySelector('.cart_items');
 const total = document.querySelector('.total_number');
 const carritoContainer = document.querySelector('.cart_items');
+const contenedorCart = document.querySelector('.cart_container-items');
 
+//contiene el precio total del cart
 let precioTotal = 0;
+//cuenta cuantos productos hay en cart y da el id
 let cont = 0;
 
-let obj2 = [];
+//almacena los objetos que se añaden al cart
+let almacen = [];
 
+//visible el cart
 const toggleCart = () => {
   modalCart.classList.toggle('visible');
   document.body.classList.toggle('no_overflow');
 };
 
 menuButton.addEventListener('click', toggleCart);
-//delegacion de evento
-carritoContainer.addEventListener('click', e => {
-  //remueve a traves del di que le di
-  carritoContainer.removeChild(
-    document.getElementById(e.path[2].attributes[1].value)
-  );
-  const precioRestar = e.target.attributes[1].value;
 
-  precioTotal -= precioRestar;
-  total.textContent = precioTotal.toFixed(2);
-  cont--;
-  contadorLabel.textContent = cont;
+//-------------------Cart------------------
+contenedorCart.addEventListener('click', e => {
+  if (e.target.className === 'cart_buy-button') {
+    if (total.innerHTML === '') {
+      alert('No tienes nada en el carrito :C');
+    } else {
+      modalCart.classList.toggle('visible');
+
+      alert('Lo siento amigo, pero estas paltas son mías ahora >:D');
+      carritoContainer.textContent = '';
+      cont = 0;
+      precioTotal = 0;
+      total.textContent = '';
+      contadorLabel.textContent = '0';
+    }
+  }
+
+  if (e.target.className === 'fa-solid fa-trash') {
+    //remueve a traves del id que le di
+    carritoContainer.removeChild(
+      document.getElementById(e.path[3].attributes[1].value)
+    );
+    const precioRestar = e.target.attributes[0].value;
+
+    precioTotal -= precioRestar;
+    total.textContent = `$${precioTotal.toFixed(2)}`;
+    cont--;
+    contadorLabel.textContent = cont;
+  }
 });
 
+//--------------Productos-------------------
 appNode.addEventListener('click', e => {
-  if (e.target.className === 'add_button') {
+  if (e.target.className === 'fa-solid fa-cart-plus') {
     cont++;
     contadorLabel.textContent = '' + cont;
     //filtrar el obj con todos los datos
-    const indData = obj2.filter(s => s.id === e.path[2].attributes[1].value);
+    const indData = almacen.filter(s => s.id === e.path[3].attributes[1].value);
 
     precioTotal += indData[0].price;
-    total.textContent = precioTotal.toFixed(2);
+    total.textContent = `$${precioTotal.toFixed(2)}`;
     // console.log(precioTotal.toFixed(2));
 
     carrito.append(
@@ -51,6 +74,7 @@ appNode.addEventListener('click', e => {
   }
 });
 
+//Le da el formato $ al precio
 const formatPrice = precio => {
   const newPrecio = new window.Intl.NumberFormat('en-EN', {
     style: 'currency',
@@ -60,6 +84,7 @@ const formatPrice = precio => {
   return newPrecio;
 };
 
+//Crea elementos del cart
 const crearCart = (image, name, price, id) => {
   const imagen = document.createElement('img');
   imagen.src = api + image;
@@ -82,8 +107,11 @@ const crearCart = (image, name, price, id) => {
 
   const count = document.createElement('div');
   count.className = 'delete_button';
-  count.setAttribute('precio', price);
-  count.textContent = 'ELIMINAR';
+
+  const ico = document.createElement('i');
+  ico.setAttribute('precio', price);
+  ico.className = 'fa-solid fa-trash';
+  count.append(ico);
 
   contenedorRight.append(datos, count);
 
@@ -94,6 +122,7 @@ const crearCart = (image, name, price, id) => {
   return container;
 };
 
+//Crea elementos del contenedor princiapl
 const crear = (image, name, price, id) => {
   const imagen = document.createElement('img');
   imagen.src = api + image;
@@ -116,7 +145,9 @@ const crear = (image, name, price, id) => {
 
   const count = document.createElement('div');
   count.className = 'add_button';
-  count.textContent = 'AÑADIR';
+  const ico = document.createElement('i');
+  ico.className = 'fa-solid fa-cart-plus';
+  count.append(ico);
 
   contenedorRight.append(datos, count);
 
@@ -126,10 +157,12 @@ const crear = (image, name, price, id) => {
   container.setAttribute('id', id);
   return container;
 };
+
+//Llamada a la api
 fetch(`${api}/api/avo`)
   .then(res => res.json())
   .then(res => {
-    obj2 = res.data;
+    almacen = res.data;
     res.data.forEach(item =>
       appNode.append(crear(item.image, item.name, item.price, item.id))
     );
